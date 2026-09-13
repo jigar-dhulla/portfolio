@@ -1,0 +1,323 @@
+/*
+ | Modernist — design tokens and the component classes the site uses.
+ |
+ | Ported from the "Modernist" design system shipped with the portfolio design
+ | file: flat and architectural, set entirely in Archivo, zero corner radius,
+ | strong 2px rules doing all the organising. The design retunes the system's
+ | red accent to orange, so the accent ramp below is the orange one.
+ |
+ | Only the components the site actually renders are kept (buttons, tags, form
+ | fields, the rule and the image treatment); the tokens are complete.
+ */
+
+:root {
+    --color-bg: #ffffff;
+    --color-surface: #f6f5f4;
+    --color-text: #201e1d;
+    --color-accent: #f2610a;
+    --color-divider: color-mix(in srgb, #201e1d 40%, transparent);
+
+    /* Tonal ramps on one shared perceptual lightness scale: the same step of
+       any role carries the same visual weight. 100-300 tint fills and hovers,
+       500 is the base, 700-900 carry text on tinted fills and pressed states. */
+    --color-neutral-100: #f8f4f4;
+    --color-neutral-200: #eae7e7;
+    --color-neutral-300: #d7d3d3;
+    --color-neutral-400: #bab6b6;
+    --color-neutral-500: #9b9797;
+    --color-neutral-600: #7d7979;
+    --color-neutral-700: #605d5d;
+    --color-neutral-800: #444141;
+    --color-neutral-900: #2d2b2b;
+
+    --color-accent-100: #fff4ea;
+    --color-accent-200: #ffe2c7;
+    --color-accent-300: #ffc394;
+    --color-accent-400: #ff9a4d;
+    --color-accent-500: #f2610a;
+    --color-accent-600: #cf4f00;
+    --color-accent-700: #9c3b00;
+    --color-accent-800: #6f2a02;
+    --color-accent-900: #46200c;
+
+    --font-heading: 'Archivo', system-ui, sans-serif;
+    --font-heading-weight: 800;
+    --font-body: 'Archivo', system-ui, sans-serif;
+
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-6: 24px;
+    --space-8: 32px;
+
+    --radius-sm: 0px;
+    --radius-md: 0px;
+    --radius-lg: 0px;
+
+    --shadow-sm: 0 1px 2px color-mix(in srgb, #2d2b2b 14%, transparent);
+    --shadow-md: 0 3px 10px color-mix(in srgb, #2d2b2b 16%, transparent);
+    --shadow-lg: 0 12px 32px color-mix(in srgb, #2d2b2b 22%, transparent);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0 0 var(--space-2);
+    font-family: var(--font-heading);
+    font-weight: var(--font-heading-weight);
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+}
+
+h1 {
+    font-size: 42px;
+}
+
+h2 {
+    font-size: 32px;
+}
+
+h3 {
+    font-size: 25px;
+}
+
+h4 {
+    font-size: 20px;
+}
+
+h5 {
+    font-size: 16px;
+}
+
+h6 {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+p {
+    margin: 0 0 var(--space-3);
+}
+
+button,
+input,
+select,
+textarea {
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    letter-spacing: inherit;
+}
+
+svg {
+    display: block;
+}
+
+a {
+    color: var(--color-accent-700);
+    text-decoration: none;
+    text-underline-offset: 3px;
+}
+
+a:hover {
+    color: var(--color-accent);
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+:focus {
+    outline: none;
+}
+
+:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+::selection {
+    background: var(--color-accent-200);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* — rules — */
+
+.hr {
+    height: 2px;
+    margin: var(--space-4) 0;
+    border: 0;
+    background: var(--color-divider);
+}
+
+/* — imagery: photographs print in pure black and white — */
+
+.grayscale {
+    filter: grayscale(1) contrast(1.08);
+}
+
+/* — buttons — */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: var(--space-2) calc(var(--space-3) * 1.2);
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 14px;
+    font-weight: var(--font-heading-weight);
+    line-height: 1.2;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn svg {
+    display: block;
+}
+
+.btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active {
+    color: var(--color-bg);
+}
+
+.btn-primary {
+    background: var(--color-accent);
+}
+
+.btn-primary:hover {
+    background: var(--color-accent-600);
+}
+
+.btn-primary:active {
+    background: var(--color-accent-700);
+}
+
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:active {
+    color: var(--color-text);
+}
+
+.btn-secondary {
+    border-color: var(--color-divider);
+}
+
+.btn-secondary:hover {
+    background: color-mix(in srgb, var(--color-text) 7%, transparent);
+}
+
+.btn-secondary:active {
+    background: color-mix(in srgb, var(--color-text) 14%, transparent);
+}
+
+/* — tags — */
+
+.tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    border-radius: calc(var(--radius-md) * 0.75);
+    font-size: 11px;
+    letter-spacing: 0.02em;
+}
+
+.tag-accent {
+    background: var(--color-accent-100);
+    color: var(--color-accent-800);
+}
+
+.tag-neutral {
+    background: var(--color-neutral-100);
+    color: var(--color-neutral-800);
+}
+
+.tag-outline {
+    border: 1px solid var(--color-accent);
+    color: var(--color-accent-700);
+}
+
+/* — form fields — */
+
+.field > label {
+    display: block;
+    margin-bottom: 5px;
+    color: color-mix(in srgb, var(--color-text) 70%, transparent);
+    font-size: 12px;
+}
+
+.input {
+    width: 100%;
+    min-height: 36px;
+    padding: 6px 10px;
+    border: 1px solid var(--color-divider);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    color: var(--color-text);
+    caret-color: var(--color-accent);
+    font: inherit;
+    font-size: 14px;
+}
+
+.input:hover {
+    border-color: color-mix(in srgb, var(--color-text) 45%, transparent);
+}
+
+.input:focus-visible {
+    border-color: var(--color-accent);
+    outline-offset: 0;
+}
+
+textarea.input {
+    min-height: 90px;
+    resize: vertical;
+}

@@ -1,0 +1,651 @@
+/*
+ | The portfolio page itself, built on the Modernist tokens in
+ | design-system.css. Every value here comes from the design file; the grid,
+ | the 2px section rules and the flush-left alignment do all the organising.
+ */
+
+@keyframes rise {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.shell {
+    position: relative;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 4vw, 40px);
+    animation: rise 0.5s ease both;
+}
+
+.skip-link {
+    position: fixed;
+    left: -9999px;
+    top: 0;
+    z-index: 1000;
+    padding: var(--space-2) var(--space-4);
+    background: var(--color-text);
+    color: var(--color-bg);
+    font-weight: 600;
+}
+
+.skip-link:focus {
+    left: clamp(20px, 4vw, 40px);
+    color: var(--color-bg);
+}
+
+/* ── header ────────────────────────────────────────────────────────────── */
+
+.site-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 22px 0;
+    border-bottom: 2px solid var(--color-text);
+}
+
+.site-header__brand {
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+}
+
+.site-header__brand span {
+    color: var(--color-accent);
+}
+
+.site-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(14px, 2.4vw, 28px);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.site-nav a {
+    color: var(--color-neutral-700);
+}
+
+.site-nav a:hover {
+    color: var(--color-accent);
+}
+
+.site-nav a.is-accent {
+    color: var(--color-accent-700);
+}
+
+/* ── hero ──────────────────────────────────────────────────────────────── */
+
+.hero {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: clamp(28px, 5vw, 64px);
+    align-items: center;
+    padding: clamp(48px, 8vw, 104px) 0 clamp(40px, 6vw, 72px);
+}
+
+.hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 28px;
+    padding: 6px 12px;
+    border: 1px solid var(--color-accent-300);
+    background: var(--color-accent-100);
+    color: var(--color-accent-700);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.hero__badge::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    background: var(--color-accent);
+}
+
+.hero__title {
+    max-width: 17ch;
+    margin: 0;
+    font-size: clamp(38px, 6.4vw, 76px);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+}
+
+.hero__lead {
+    max-width: 62ch;
+    margin: 28px 0 0;
+    color: var(--color-neutral-800);
+    font-size: clamp(17px, 1.6vw, 21px);
+    line-height: 1.5;
+    text-wrap: pretty;
+}
+
+.hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 36px;
+}
+
+.hero__portrait {
+    width: 100%;
+    max-width: 420px;
+    justify-self: end;
+    border: 2px solid var(--color-text);
+    aspect-ratio: 4 / 5;
+}
+
+.hero__portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 44% center;
+}
+
+/* Once the hero is a single column, end-aligning the portrait leaves it
+   off the grid. Let it run the full content width instead. */
+@media (max-width: 700px) {
+    .hero__portrait {
+        max-width: none;
+        justify-self: stretch;
+    }
+}
+
+/* ── stats ─────────────────────────────────────────────────────────────── */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    border-top: 2px solid var(--color-text);
+    border-bottom: 2px solid var(--color-text);
+}
+
+.stat {
+    padding: 24px 20px;
+    border-right: 1px solid var(--color-neutral-300);
+}
+
+.stat:first-child {
+    padding-left: 0;
+}
+
+.stat:last-child {
+    border-right: 0;
+}
+
+.stat__value {
+    font-family: var(--font-heading);
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.stat__label {
+    margin-top: 4px;
+    color: var(--color-neutral-700);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+/* Below four across the row wraps, so the rules have to move with it:
+   every cell that starts a row goes flush left, every cell that ends one
+   drops its divider. */
+@media (max-width: 840px) {
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stat:nth-child(odd) {
+        padding-left: 0;
+    }
+
+    .stat:nth-child(even) {
+        border-right: 0;
+    }
+
+    .stat:nth-child(-n + 2) {
+        border-bottom: 1px solid var(--color-neutral-300);
+    }
+}
+
+@media (max-width: 400px) {
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .stat {
+        padding-left: 0;
+        border-right: 0;
+        border-bottom: 1px solid var(--color-neutral-300);
+    }
+
+    .stat:last-child {
+        border-bottom: 0;
+    }
+}
+
+/* ── sections ──────────────────────────────────────────────────────────── */
+
+.section {
+    padding: clamp(48px, 7vw, 88px) 0;
+    border-bottom: 2px solid var(--color-text);
+}
+
+.section--last {
+    border-bottom: 0;
+}
+
+.section--split {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: clamp(24px, 4vw, 56px);
+}
+
+.section--contact {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: clamp(28px, 5vw, 64px);
+}
+
+.section__number {
+    color: var(--color-accent-700);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.section__title {
+    margin: 14px 0 44px;
+    font-size: clamp(26px, 3.4vw, 40px);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+}
+
+.section--split .section__title {
+    margin-bottom: 0;
+}
+
+/* ── about ─────────────────────────────────────────────────────────────── */
+
+.about__body {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    max-width: 60ch;
+}
+
+.about__body p {
+    margin: 0;
+    color: var(--color-neutral-800);
+    font-size: 17px;
+    line-height: 1.62;
+    text-wrap: pretty;
+}
+
+.tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.about__body .tag-row {
+    margin-top: 6px;
+}
+
+/* ── experience ────────────────────────────────────────────────────────── */
+
+.role {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: clamp(20px, 4vw, 56px);
+    margin-top: 34px;
+    padding-top: 26px;
+    border-top: 1px solid var(--color-neutral-300);
+}
+
+.role:first-of-type {
+    margin-top: 0;
+    border-top: 2px solid var(--color-text);
+}
+
+.role__badge {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 4px 9px;
+    background: var(--color-accent);
+    color: var(--color-bg);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+}
+
+.role__title {
+    margin: 0;
+    font-size: 20px;
+    letter-spacing: -0.01em;
+}
+
+.role:first-of-type .role__title {
+    font-size: 23px;
+}
+
+.role__org {
+    margin-top: 5px;
+    color: var(--color-neutral-700);
+    font-size: 15px;
+}
+
+.role__dates {
+    margin-top: 3px;
+    color: var(--color-neutral-700);
+    font-size: 14px;
+}
+
+.role__detail {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 62ch;
+}
+
+.role__detail p {
+    margin: 0;
+    color: var(--color-neutral-800);
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.role__detail ul {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 0;
+    padding-left: 18px;
+    list-style: disc outside;
+    color: var(--color-neutral-800);
+    font-size: 16px;
+    line-height: 1.55;
+}
+
+/* The ul is a flex container, so spell out that its children stay list items
+   and keep their markers. */
+.role__detail li {
+    display: list-item;
+}
+
+.role__detail strong {
+    font-weight: 700;
+}
+
+/* ── projects ──────────────────────────────────────────────────────────── */
+
+.projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2px;
+    border: 2px solid var(--color-text);
+    background: var(--color-text);
+}
+
+.project {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: clamp(24px, 3vw, 36px);
+    background: var(--color-bg);
+    color: var(--color-text);
+}
+
+.project:hover {
+    background: var(--color-accent-100);
+    color: var(--color-text);
+}
+
+.project__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.project__title {
+    margin: 0;
+    font-size: clamp(24px, 2.6vw, 32px);
+    letter-spacing: -0.02em;
+}
+
+.project__link {
+    margin-top: 6px;
+    color: var(--color-accent-700);
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.project__kind {
+    color: var(--color-neutral-700);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.project__kind.is-accent {
+    color: var(--color-accent-700);
+}
+
+.project p {
+    margin: 0;
+    color: var(--color-neutral-800);
+    font-size: 16px;
+    line-height: 1.6;
+    text-wrap: pretty;
+}
+
+.project .tag-row {
+    margin-top: auto;
+}
+
+/* ── entry rows (open source, talks) ───────────────────────────────────── */
+
+.entry {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: clamp(16px, 4vw, 56px);
+    align-items: start;
+    padding: 26px 0;
+    border-bottom: 1px solid var(--color-neutral-300);
+    color: var(--color-text);
+}
+
+.entry:last-child {
+    border-bottom: 0;
+}
+
+a.entry:hover {
+    background: var(--color-accent-100);
+    color: var(--color-text);
+}
+
+.entry__title {
+    margin: 0;
+    font-size: 21px;
+    letter-spacing: -0.01em;
+}
+
+.entry__meta {
+    margin-top: 6px;
+    color: var(--color-accent-700);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.entry__meta.is-muted {
+    color: var(--color-neutral-700);
+}
+
+.entry p {
+    max-width: 56ch;
+    margin: 0;
+    color: var(--color-neutral-800);
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.entry .tag-row {
+    margin-top: 14px;
+}
+
+/* ── contact ───────────────────────────────────────────────────────────── */
+
+.contact__intro {
+    max-width: 46ch;
+    margin: 20px 0 0;
+    color: var(--color-neutral-800);
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+.contact__links {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 32px;
+    padding-top: 18px;
+    border-top: 2px solid var(--color-text);
+}
+
+.contact__links a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 9px 0;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.contact__links svg {
+    flex: none;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: clamp(22px, 3vw, 32px);
+    border: 2px solid var(--color-text);
+    background: var(--color-surface);
+}
+
+.contact-form button[type='submit'] {
+    align-self: flex-start;
+}
+
+.contact-form__error {
+    margin: 5px 0 0;
+    color: var(--color-accent-700);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.contact-form__sent,
+.contact-form__alert {
+    margin: 0;
+    color: var(--color-accent-700);
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.contact-form__honeypot {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+/* ── footer ────────────────────────────────────────────────────────────── */
+
+.site-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 26px 0 34px;
+    border-top: 2px solid var(--color-text);
+}
+
+.site-footer__group {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.site-footer__mark {
+    display: block;
+    line-height: 0;
+}
+
+.site-footer__copy {
+    color: var(--color-neutral-700);
+    font-size: 14px;
+}
+
+.site-footer__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+}
+
+.site-footer__top {
+    color: var(--color-neutral-700);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.pizza-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: none;
+    background: none;
+    color: var(--color-neutral-400);
+    cursor: pointer;
+}
+
+.pizza-button:hover {
+    color: var(--color-accent);
+}
+
+.pizza-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
