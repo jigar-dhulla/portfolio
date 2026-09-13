@@ -12,7 +12,11 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        // The only way in is the host-wide Traefik on the shared proxy network,
+        // which speaks plain HTTP to this container. Without trusting it the app
+        // believes every request is insecure and generates http:// form actions
+        // on an https:// page, which a browser blocks for the login form.
+        $middleware->trustProxies(at: '*');
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(
