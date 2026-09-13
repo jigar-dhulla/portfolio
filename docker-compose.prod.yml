@@ -1,0 +1,78 @@
+# Production topology for the portfolio site.
+#
+# No ports are published: Traefik (the separate `infra` compose project on the
+# host) reaches the web container over the shared external `proxy` network and
+# terminates TLS. Everything else stays on this project's private `default`
+# network, so the database and workers are unreachable from outside.
+name: portfolio
+
+x-php: &php
+  image: ghcr.io/jigar-dhulla/portfolio:latest
+  working_dir: /app
+  env_file: .env
+  environment:
+    DB_CONNECTION: sqlite
+    DB_DATABASE: /app/database/data/database.sqlite
+  volumes:
+    - ./.env:/app/.env
+    - app-db:/app/database/data
+    - app-storage:/app/storage
+  logging:
+    driver: json-file
+    options:
+      max-size: "10m"
+      max-file: "5"
+  # The base image's healthcheck probes Caddy's admin endpoint (:2019), which
+  # php-server runs with admin disabled and workers never expose. `web`
+  # replaces it with a real one below.
+  healthcheck:
+    disable: true
+  restart: unless-stopped
+
+services:
+  web:
+    <<: *php
+    command: ["sh", "-c", "mkdir -p storage/framework/cache/data storage/framework/sessions storage/framework/views storage/logs && php artisan optimize && exec frankenphp php-server --listen :8080 --root public/"]
+    networks:
+      - default
+      - proxy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/up"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    labels:
+      # Router/service names must be unique across every app on the host;
+      # Traefik reads these off the Docker socket for all projects at once.
+      - traefik.enable=true
+      - traefik.http.routers.portfolio.rule=Host(`${WEB_HOST}`) || Host(`www.${WEB_HOST}`)
+      - traefik.http.routers.portfolio.entrypoints=websecure
+      - traefik.http.routers.portfolio.tls.certresolver=letsencrypt
+      - traefik.http.services.portfolio.loadbalancer.server.port=8080
+
+  queue:
+    <<: *php
+    command: ["php", "artisan", "queue:work", "--tries=3", "--timeout=120"]
+
+  scheduler:
+    <<: *php
+    command: ["php", "artisan", "schedule:work"]
+
+  # One-off shell for migrations and artisan, used by deploy.sh. Never starts
+  # with the stack.
+  app:
+    <<: *php
+    profiles: ["cli"]
+    restart: "no"
+    command: ["bash"]
+
+volumes:
+  app-db:
+  app-storage:
+
+networks:
+  # Created once on the host with `docker network create proxy` and shared by
+  # every app. External so no project's teardown can remove it.
+  proxy:
+    external: true

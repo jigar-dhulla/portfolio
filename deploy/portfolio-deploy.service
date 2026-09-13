@@ -1,0 +1,12 @@
+[Unit]
+Description=Portfolio deploy: roll out the latest published image if it changed
+After=network-online.target docker.service
+Wants=network-online.target
+Requires=docker.service
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/portfolio
+Environment=DEPLOY_CHECK_DIGEST=1
+ExecStart=/opt/portfolio/deploy.sh
+TimeoutStartSec=600
