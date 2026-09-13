@@ -649,3 +649,128 @@ a.entry:hover {
     height: 100%;
     pointer-events: none;
 }
+
+/* ── admin (sign in, messages) ──────────────────────────────────────────── */
+
+.admin-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: 22px 0;
+    border-bottom: 2px solid var(--color-text);
+}
+
+.admin-bar__brand {
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 17px;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.admin {
+    padding: clamp(32px, 5vw, 56px) 0;
+}
+
+.admin--narrow {
+    max-width: 380px;
+}
+
+.admin__title {
+    margin: 0 0 var(--space-4);
+    font-size: clamp(26px, 3.4vw, 36px);
+    letter-spacing: -0.02em;
+}
+
+.admin__form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.admin__error {
+    margin: 0;
+    padding: var(--space-3);
+    background: var(--color-accent-100);
+    color: var(--color-accent-700);
+    font-weight: 600;
+}
+
+.admin__flash {
+    margin: 0 0 var(--space-4);
+    padding: var(--space-3);
+    background: var(--color-neutral-100);
+    font-weight: 600;
+}
+
+.admin__count,
+.admin__empty {
+    margin: 0 0 var(--space-6);
+    color: var(--color-neutral-700);
+    font-size: 14px;
+}
+
+.message {
+    padding: var(--space-4) 0;
+    border-top: 2px solid var(--color-text);
+}
+
+.message__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-2);
+}
+
+.message__name {
+    margin: 0;
+    font-size: 17px;
+}
+
+.message__time {
+    color: var(--color-neutral-600);
+    font-size: 13px;
+}
+
+.message__email {
+    display: inline-block;
+    margin-top: var(--space-1);
+    color: var(--color-accent-700);
+    font-size: 14px;
+    overflow-wrap: anywhere;
+}
+
+.message__body {
+    margin: var(--space-3) 0;
+    /* Keep the sender's own line breaks; wrap anything unbroken so a pasted
+       URL cannot push the page sideways on a phone. */
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.message__delete summary {
+    display: inline-block;
+    padding: var(--space-2) 0;
+    color: var(--color-neutral-700);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.message__delete form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+    padding-top: var(--space-2);
+    font-size: 14px;
+}
+
+.admin-pager {
+    display: flex;
+    gap: var(--space-3);
+    padding-top: var(--space-6);
+    border-top: 2px solid var(--color-text);
+}

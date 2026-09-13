@@ -1,6 +1,7 @@
 @props([
     'title' => 'Jigar Dhulla - Backend engineer',
     'description' => 'Jigar Dhulla builds backend systems that handle growth, and leads the teams that build them. Laravel, PHP, MySQL and AWS, from Pune.',
+    'robots' => null,
 ])
 
 <!DOCTYPE html>
@@ -11,6 +12,9 @@
 
     <title>{{ $title }}</title>
     <meta name="description" content="{{ $description }}">
+    @if ($robots)
+        <meta name="robots" content="{{ $robots }}">
+    @endif
 
     <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
     <link rel="canonical" href="{{ url()->current() }}">
