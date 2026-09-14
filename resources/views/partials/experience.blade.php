@@ -59,7 +59,7 @@
             <div class="role__dates">Jul 2020 to Feb 2022</div>
         </div>
         <div class="role__detail">
-            <p><strong>Responsible for 30+ projects</strong> and for what the team promised to deliver.</p>
+            <p><strong>Responsible for the team&rsquo;s project portfolio</strong> and for what they promised to deliver.</p>
             <ul>
                 <li><strong>Talked to clients</strong> to understand requirements, then designed the applications.</li>
                 <li><strong>Ran the sprints in JIRA</strong> and set up how the team used Git.</li>
