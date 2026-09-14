@@ -18,6 +18,9 @@
                 <li>Plan the work and <strong>run the sprints in JIRA</strong>.</li>
                 <li><strong>Review code</strong> and keep the coding standards the same everywhere.</li>
                 <li>Take the <strong>system design and infrastructure decisions</strong> for the product.</li>
+                <li><strong>Own system reliability</strong> in production.</li>
+                <li><strong>Coordinate with other teams</strong> across the company.</li>
+                <li><strong>Mentor peers</strong> in the team.</li>
             </ul>
         </div>
     </div>

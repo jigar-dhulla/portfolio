@@ -10,7 +10,7 @@
         <p>
             Most of my work is on the backend: designing applications and APIs, working with MySQL,
             integrating 3rd party APIs. As a lead I plan the work, run the team&rsquo;s sprints in JIRA,
-            generate code and review peer&rsquo;s generated code.
+            write robust code, set architectural standards, and lead peer code reviews.
         </p>
 
         <p>
