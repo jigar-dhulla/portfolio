@@ -184,7 +184,7 @@ class ContactFormTest extends TestCase
 
     public function test_a_message_mentioning_a_couple_of_links_is_accepted(): void
     {
-        $message = 'My repo is at https://github.com/example and the site is www.example.org — can you help?';
+        $message = 'My repo is at https://github.com/example and the site is www.example.org, can you help?';
 
         $this->post(route('contact.store'), $this->validPayload(['message' => $message]))
             ->assertSessionHasNoErrors();

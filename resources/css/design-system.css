@@ -1,5 +1,5 @@
 /*
- | Modernist — design tokens and the component classes the site uses.
+ | Modernist: design tokens and the component classes the site uses.
  |
  | Ported from the "Modernist" design system shipped with the portfolio design
  | file: flat and architectural, set entirely in Archivo, zero corner radius,
@@ -180,7 +180,7 @@ img {
     }
 }
 
-/* — rules — */
+/* ── rules ─────────────────────────────────────────────────────────────── */
 
 .hr {
     height: 2px;
@@ -189,13 +189,13 @@ img {
     background: var(--color-divider);
 }
 
-/* — imagery: photographs print in pure black and white — */
+/* ── imagery: photographs print in pure black and white ────────────────── */
 
 .grayscale {
     filter: grayscale(1) contrast(1.08);
 }
 
-/* — buttons — */
+/* ── buttons ───────────────────────────────────────────────────────────── */
 
 .btn {
     display: inline-flex;
@@ -260,7 +260,7 @@ img {
     background: color-mix(in srgb, var(--color-text) 14%, transparent);
 }
 
-/* — tags — */
+/* ── tags ──────────────────────────────────────────────────────────────── */
 
 .tag {
     display: inline-flex;
@@ -286,7 +286,7 @@ img {
     color: var(--color-accent-700);
 }
 
-/* — form fields — */
+/* ── form fields ───────────────────────────────────────────────────────── */
 
 .field > label {
     display: block;

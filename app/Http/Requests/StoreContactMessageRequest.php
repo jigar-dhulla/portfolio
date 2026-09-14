@@ -11,7 +11,7 @@ class StoreContactMessageRequest extends FormRequest
 {
     /**
      * Letters and the punctuation that turns up inside real names, and nothing
-     * else — no digits, no slashes, no angle brackets. `\p{L}` keeps names
+     * else: no digits, no slashes, no angle brackets. `\p{L}` keeps names
      * outside the Latin alphabet valid; the escaped code points are the
      * typographic apostrophes a phone substitutes for a plain one.
      */
@@ -84,7 +84,7 @@ class StoreContactMessageRequest extends FormRequest
 
     /**
      * Strict RFC compliance, plus a check that the domain can actually receive
-     * mail. The MX lookup is a live DNS query, so it is switchable — see
+     * mail. The MX lookup is a live DNS query, so it is switchable, see
      * config/portfolio.php.
      */
     private function emailRule(): Email
@@ -121,8 +121,8 @@ class StoreContactMessageRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.regex' => 'Please use letters only — no digits, links or symbols.',
-            'name.not_regex' => 'Please use letters only — no digits, links or symbols.',
+            'name.regex' => 'Please use letters only: no digits, links or symbols.',
+            'name.not_regex' => 'Please use letters only: no digits, links or symbols.',
             'email.max' => 'That email address is longer than an email address can be.',
             'message.min' => 'Please write at least 20 characters so I know what you need.',
             'message.not_regex' => 'That message contains characters I cannot read.',

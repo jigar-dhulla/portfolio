@@ -9,7 +9,7 @@ use Illuminate\Translation\PotentiallyTranslatedString;
 /**
  * Cap how many links a piece of text may contain.
  *
- * A genuine enquiry occasionally carries a link — someone's company, a repo,
+ * A genuine enquiry occasionally carries a link: someone's company, a repo,
  * the thing they want help with. A pile of them is link spam.
  */
 class MaxLinks implements ValidationRule

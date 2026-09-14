@@ -3,7 +3,7 @@
 Personal portfolio site. Laravel 13 on FrankenPHP (PHP 8.4), SQLite, deployed as a
 container image to a shared VPS.
 
-## Deployment architecture — read this before touching Docker or routing
+## Deployment architecture: read this before touching Docker or routing
 
 This app does **not** own its own ingress. It shares a VPS (`5.223.52.5`) with an
 unrelated app (`yaarpool`, at `github.com/jigar-dhulla/yaarpool-whatsapp-agent`),
@@ -32,12 +32,12 @@ Three rules follow from that, and breaking any of them breaks the *other* app to
    collision silently hijacks the other app's routing.
 
 `WEB_HOST` has no default. An unset value makes Traefik reject the router, which
-is intentional — a default would request a Let's Encrypt certificate for the
+is intentional: a default would request a Let's Encrypt certificate for the
 wrong domain and burn the failed-challenge rate limit.
 
 ## How a deploy happens
 
-Deployment is **pull-based** — nothing pushes to the server.
+Deployment is **pull-based**: nothing pushes to the server.
 
 ```
 push to main -> CI builds -> ghcr.io/jigar-dhulla/portfolio:latest
@@ -53,7 +53,7 @@ separate deploy step to forget, and no staging environment.
 The trigger is outbound by design: the box runs CrowdSec, which has previously
 dropped inbound SSH from GitHub runners. `deploy/deploy.sh` re-syncs *itself* and
 `docker-compose.prod.yml` from `main` before rolling out, so changes to either
-take effect on the next deploy — but note that means **the server always runs the
+take effect on the next deploy, but note that means **the server always runs the
 compose file from `main`**, not whatever is checked out locally.
 
 The GHCR package must stay **public**: `deploy.sh` reads the manifest digest with
@@ -70,7 +70,7 @@ an anonymous registry token. Making the package private silently stops deploys
 | `deploy/portfolio-deploy.{service,timer}` | systemd units, installed to `/etc/systemd/system/` |
 | `.github/workflows/publish-image.yml` | Builds and pushes to GHCR on push to `main` |
 
-On the server, `/opt/portfolio/.env` is the real environment file — it is **not**
+On the server, `/opt/portfolio/.env` is the real environment file. It is **not**
 in git and is bind-mounted into every container. `COMPOSE_FILE` is set there so a
 bare `docker compose` in that directory finds the prod file.
 
@@ -111,7 +111,7 @@ The Laravel Boost guidelines are specifically curated by Laravel maintainers for
 
 ## Foundational Context
 
-This application is a Laravel application running on PHP 8.4. You are an expert with the Laravel ecosystem. Always use the APIs that match the installed major version of each package — do not assume a version.
+This application is a Laravel application running on PHP 8.4. You are an expert with the Laravel ecosystem. Always use the APIs that match the installed major version of each package. Do not assume a version.
 
 Before relying on a package's API, confirm its installed version:
 - PHP packages: run `composer show --direct` to list direct dependencies with versions, or `composer show <vendor/package>` for a single package.
@@ -150,7 +150,7 @@ Before relying on a package's API, confirm its installed version:
 
 ## Project Rules
 
-- This project contains committed, area-grouped rules in `.ai/rules` when that directory exists (settled decisions, non-obvious traps, standing constraints). Framework and package guidelines that only apply to specific paths (testing, frontend, components) also live there, under `.ai/rules/boost` — this is not just recorded decisions, it is load-bearing guidance you have not seen inline. Before you enter plan mode or create/edit any file, you MUST first: open @.ai/rules/index.md (it maps file globs to rule files), read every rule file whose globs cover the path(s) in scope, and run `grep -rin 'keyword' .ai/rules` to catch what a path match alone misses. Do not write code until you have read and are following every matching rule. If `.ai/rules` does not exist, continue without it.
+- This project contains committed, area-grouped rules in `.ai/rules` when that directory exists (settled decisions, non-obvious traps, standing constraints). Framework and package guidelines that only apply to specific paths (testing, frontend, components) also live there, under `.ai/rules/boost`. This is not just recorded decisions, it is load-bearing guidance you have not seen inline. Before you enter plan mode or create/edit any file, you MUST first: open @.ai/rules/index.md (it maps file globs to rule files), read every rule file whose globs cover the path(s) in scope, and run `grep -rin 'keyword' .ai/rules` to catch what a path match alone misses. Do not write code until you have read and are following every matching rule. If `.ai/rules` does not exist, continue without it.
 
 ## Artisan
 
