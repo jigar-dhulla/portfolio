@@ -5,7 +5,7 @@
     <a class="entry" href="https://www.youtube.com/watch?v=dP88NZfVjnY" target="_blank" rel="noopener">
         <div>
             <h3 class="entry__title">Laracon India</h3>
-            <div class="entry__meta">Watch the talk &nearr;</div>
+            <div class="entry__meta">Watch the talk&nbsp;&nearr;</div>
         </div>
         <div>
             <p>

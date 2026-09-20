@@ -52,6 +52,68 @@
     border-bottom: 2px solid var(--color-text);
 }
 
+/* Shown only once the links collapse, below the nav breakpoint. */
+.site-header__toggle {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    /* A thumb-sized target, which the 2px border makes visible as one. */
+    min-height: 44px;
+    padding: 9px 13px;
+    border: 2px solid var(--color-text);
+    background: none;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+/* Three 2px rules, the same weight as every other rule on the page. The middle
+   one is the element itself, the outer two its pseudo-elements. */
+.site-header__bars,
+.site-header__bars::before,
+.site-header__bars::after {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: currentColor;
+    transition: transform 0.18s ease, background-color 0.18s ease;
+}
+
+.site-header__bars {
+    position: relative;
+}
+
+.site-header__bars::before,
+.site-header__bars::after {
+    content: '';
+    position: absolute;
+    left: 0;
+}
+
+.site-header__bars::before {
+    top: -6px;
+}
+
+.site-header__bars::after {
+    top: 6px;
+}
+
+.site-header[data-nav-open] .site-header__bars {
+    background: transparent;
+}
+
+.site-header[data-nav-open] .site-header__bars::before {
+    transform: translateY(6px) rotate(45deg);
+}
+
+.site-header[data-nav-open] .site-header__bars::after {
+    transform: translateY(-6px) rotate(-45deg);
+}
+
 .site-header__brand {
     color: var(--color-text);
     font-family: var(--font-heading);
@@ -86,11 +148,49 @@
     color: var(--color-accent-700);
 }
 
+/* Six links in a row stop fitting on one line well before a phone. Below the
+   breakpoint they become a stacked panel the Menu button opens; the same 720px
+   is where the hero goes to one column. */
+@media (max-width: 719px) {
+    .site-header {
+        align-items: center;
+        gap: 12px;
+        padding: 16px 0;
+    }
+
+    .site-header__toggle {
+        display: inline-flex;
+    }
+
+    .site-nav {
+        display: none;
+        flex-basis: 100%;
+        flex-direction: column;
+        gap: 0;
+        font-size: 14px;
+    }
+
+    .site-header[data-nav-open] .site-nav {
+        display: flex;
+        animation: rise 0.22s ease both;
+    }
+
+    .site-nav a {
+        padding: 14px 0;
+        border-top: 1px solid var(--color-neutral-300);
+    }
+
+    /* The header's own 2px rule already closes the panel off underneath. */
+    .site-nav a:last-child {
+        padding-bottom: 4px;
+    }
+}
+
 /* ── hero ──────────────────────────────────────────────────────────────── */
 
 .hero {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
     gap: clamp(28px, 5vw, 64px);
     align-items: center;
     padding: clamp(48px, 8vw, 104px) 0 clamp(40px, 6vw, 72px);
@@ -158,12 +258,26 @@
     object-position: 44% center;
 }
 
-/* Once the hero is a single column, end-aligning the portrait leaves it
-   off the grid. Let it run the full content width instead. */
-@media (max-width: 700px) {
+/* One column from the nav breakpoint down, so the text and the portrait never
+   share a row too narrow for either. */
+@media (max-width: 719px) {
+    .hero {
+        grid-template-columns: 1fr;
+        padding-top: clamp(36px, 8vw, 104px);
+    }
+
+    /* End-aligning the portrait would leave it off the grid here, and a 4:5
+       frame at the full content width costs most of a phone screen on its own.
+       Run it flush left at its natural 3:2 instead: nothing is cropped away and
+       it takes a little over half the height. */
     .hero__portrait {
         max-width: none;
         justify-self: stretch;
+        aspect-ratio: 3 / 2;
+    }
+
+    .hero__portrait img {
+        object-position: center;
     }
 }
 
@@ -171,7 +285,7 @@
 
 .stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(190px, 100%), 1fr));
     border-top: 2px solid var(--color-text);
     border-bottom: 2px solid var(--color-text);
 }
@@ -226,7 +340,9 @@
     }
 }
 
-@media (max-width: 400px) {
+/* Two across still reads on a phone; only the narrowest screens, where a label
+   would break over three lines, get one stat per row. */
+@media (max-width: 359px) {
     .stats {
         grid-template-columns: 1fr;
     }
@@ -255,12 +371,12 @@
 
 .section--split {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
     gap: clamp(24px, 4vw, 56px);
 }
 
 .section--contact {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
     gap: clamp(28px, 5vw, 64px);
 }
 
@@ -314,7 +430,7 @@
 
 .role {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
     gap: clamp(20px, 4vw, 56px);
     margin-top: 34px;
     padding-top: 26px;
@@ -400,7 +516,7 @@
 
 .projects {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
     gap: 2px;
     border: 2px solid var(--color-text);
     background: var(--color-text);
@@ -468,7 +584,7 @@
 
 .entry {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
     gap: clamp(16px, 4vw, 56px);
     align-items: start;
     padding: 26px 0;
@@ -496,6 +612,10 @@ a.entry:hover {
     color: var(--color-accent-700);
     font-size: 14px;
     font-weight: 600;
+    /* These are repository URLs: one unbroken word longer than a phone is wide.
+       Browsers that offer a break after the slashes take it first, the rest
+       break the word itself rather than run off the screen. */
+    overflow-wrap: break-word;
 }
 
 .entry__meta.is-muted {

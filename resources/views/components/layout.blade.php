@@ -28,6 +28,22 @@
     <meta name="twitter:creator" content="@jigar_dhulla">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    {{-- The narrow header hides its links behind a button that needs JavaScript to
+         open it. With JavaScript off, drop the button and leave the links on show. --}}
+    <noscript>
+        <style>
+            @media (max-width: 719px) {
+                .site-header__toggle {
+                    display: none;
+                }
+
+                .site-header[data-nav] .site-nav {
+                    display: flex;
+                }
+            }
+        </style>
+    </noscript>
 </head>
 <body>
     {{ $slot }}

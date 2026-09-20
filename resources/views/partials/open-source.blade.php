@@ -5,7 +5,7 @@
     <a class="entry" href="https://github.com/jigar-dhulla/laravel-http-to-curl" target="_blank" rel="noopener">
         <div>
             <h3 class="entry__title">laravel-http-to-curl</h3>
-            <div class="entry__meta">github.com/jigar-dhulla/laravel-http-to-curl &nearr;</div>
+            <div class="entry__meta">github.com/jigar-dhulla/laravel-http-to-curl&nbsp;&nearr;</div>
         </div>
         <div>
             <p>
@@ -23,7 +23,7 @@
     <a class="entry" href="https://github.com/jigar-dhulla/laravel-whatsapp-ai-agent" target="_blank" rel="noopener">
         <div>
             <h3 class="entry__title">laravel-whatsapp-ai-agent</h3>
-            <div class="entry__meta">github.com/jigar-dhulla/laravel-whatsapp-ai-agent &nearr;</div>
+            <div class="entry__meta">github.com/jigar-dhulla/laravel-whatsapp-ai-agent&nbsp;&nearr;</div>
         </div>
         <div>
             <p>A starting point for building AI agents that chat with users on WhatsApp from a Laravel app.</p>

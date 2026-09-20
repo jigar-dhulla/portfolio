@@ -7,7 +7,7 @@
             <div class="project__head">
                 <div>
                     <h3 class="project__title">DoLocal</h3>
-                    <div class="project__link">dolocal.io &nearr;</div>
+                    <div class="project__link">dolocal.io&nbsp;&nearr;</div>
                 </div>
                 <span class="project__kind">DENSOU</span>
             </div>
@@ -30,7 +30,7 @@
             <div class="project__head">
                 <div>
                     <h3 class="project__title">YaarPool</h3>
-                    <div class="project__link">rideshare.ing &nearr;</div>
+                    <div class="project__link">rideshare.ing&nbsp;&nearr;</div>
                 </div>
                 <span class="project__kind is-accent">Side project</span>
             </div>

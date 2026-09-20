@@ -321,3 +321,13 @@ textarea.input {
     min-height: 90px;
     resize: vertical;
 }
+
+/* Safari on iOS zooms the page in whenever a field it focuses is set below
+   16px, and never zooms back out. On the screens where that happens, give the
+   fields 16px and a height a thumb can hit. */
+@media (max-width: 719px) {
+    .input {
+        min-height: 42px;
+        font-size: 16px;
+    }
+}

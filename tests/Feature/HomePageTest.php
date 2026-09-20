@@ -20,6 +20,15 @@ class HomePageTest extends TestCase
         $response->assertSee('id="contact"', false);
     }
 
+    public function test_the_menu_button_is_wired_to_the_navigation_it_opens(): void
+    {
+        $response = $this->get(route('home'));
+
+        $response->assertSee('data-nav-toggle', false);
+        $response->assertSee('aria-controls="site-nav"', false);
+        $response->assertSee('<nav class="site-nav" id="site-nav"', false);
+    }
+
     public function test_the_availability_badge_is_hidden_until_it_is_configured(): void
     {
         config(['portfolio.availability' => null]);
