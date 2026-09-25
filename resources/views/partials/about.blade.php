@@ -14,8 +14,8 @@
         </p>
 
         <p>
-            Outside work, I organise and host the Laravel Pune community meets. Currently building carpool bot,
-            YaarPool. Enjoy playing table-tennis.
+            Outside work, I organise and host the Laravel Pune community meets. Currently building personal bots.
+            Enjoy playing table-tennis.
         </p>
 
         <div class="tag-row">

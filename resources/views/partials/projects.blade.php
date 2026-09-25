@@ -26,23 +26,22 @@
             </div>
         </a>
 
-        <a class="project" href="https://rideshare.ing" target="_blank" rel="noopener">
+        <a class="project" href="https://bots.jigardhulla.dev" target="_blank" rel="noopener">
             <div class="project__head">
                 <div>
-                    <h3 class="project__title">YaarPool</h3>
-                    <div class="project__link">rideshare.ing&nbsp;&nearr;</div>
+                    <h3 class="project__title">Personal Bots</h3>
+                    <div class="project__link">bots.jigardhulla.dev&nbsp;&nearr;</div>
                 </div>
                 <span class="project__kind is-accent">Side project</span>
             </div>
 
             <p>
-                My own side project. It is a ridesharing bot on WhatsApp, so there is no app to install.
-                You send it a message and it finds people who already drive your route. I am building this now.
+                A collection of small bots I build for myself to automate everyday tasks.
             </p>
 
             <div class="tag-row">
-                <span class="tag tag-accent">Open source</span>
-                @foreach (['Laravel', 'WhatsApp API', 'MySQL', 'AWS'] as $tag)
+                <span class="tag tag-accent">Side project</span>
+                @foreach (['Laravel', 'Docker'] as $tag)
                     <span class="tag tag-neutral">{{ $tag }}</span>
                 @endforeach
             </div>
