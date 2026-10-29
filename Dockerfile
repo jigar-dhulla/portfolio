@@ -8,13 +8,13 @@ COPY vite.config.js ./
 COPY resources resources
 RUN npm run build
 
-FROM dunglas/frankenphp:1-php8.5-bookworm
+FROM dunglas/frankenphp:1-php8.4-bookworm
 
-# PHP2Shell (CVE-2026-109618, CVE-2026-109619) is fixed in 8.5.12. The tag above
+# PHP2Shell (CVE-2026-109618, CVE-2026-109619) is fixed in 8.4.27. The tag above
 # floats so later patch releases flow in; this fails the build if a stale base
 # image is ever resolved instead.
-RUN php -r 'exit(version_compare(PHP_VERSION, "8.5.12", ">=") ? 0 : 1);' \
-    || (echo "PHP $(php -r 'echo PHP_VERSION;') is vulnerable to PHP2Shell; need >= 8.5.12" >&2 && exit 1)
+RUN php -r 'exit(version_compare(PHP_VERSION, "8.4.27", ">=") ? 0 : 1);' \
+    || (echo "PHP $(php -r 'echo PHP_VERSION;') is vulnerable to PHP2Shell; need >= 8.4.27" >&2 && exit 1)
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
