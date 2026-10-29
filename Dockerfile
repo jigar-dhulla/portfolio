@@ -8,7 +8,9 @@ COPY vite.config.js ./
 COPY resources resources
 RUN npm run build
 
-FROM dunglas/frankenphp:1-php8.4-bookworm
+# Pinned to the exact PHP patch: 8.4.27 fixes PHP2Shell (CVE-2026-109618,
+# CVE-2026-109619). Bump deliberately when a newer patch ships.
+FROM dunglas/frankenphp:1-php8.4.27-bookworm
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
