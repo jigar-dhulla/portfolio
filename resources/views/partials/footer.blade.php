@@ -14,6 +14,10 @@
            rel="noopener" title="LinkedIn" aria-label="LinkedIn">
             <x-icon.linkedin :size="18" />
         </a>
+        <a class="site-footer__icon" href="https://github.com/jigar-dhulla" target="_blank"
+           rel="noopener" title="GitHub" aria-label="GitHub">
+            <x-icon.github :size="18" />
+        </a>
         <a class="site-footer__icon" href="https://twitter.com/jigar_dhulla" target="_blank"
            rel="noopener" title="X" aria-label="X">
             <x-icon.x :size="18" />

@@ -1,6 +1,6 @@
 @props([
     'title' => 'Jigar Dhulla - Backend engineer',
-    'description' => 'Jigar Dhulla, backend engineer in Pune. 15 years of Laravel, PHP, MySQL and AWS, designing APIs and systems that stay fast as traffic grows.',
+    'description' => 'Jigar Dhulla, backend engineer in Pune. '.(now()->year - 2011).' years of Laravel, PHP, MySQL and AWS, designing APIs and systems that stay fast as traffic grows.',
     'robots' => null,
 ])
 

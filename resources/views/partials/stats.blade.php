@@ -4,7 +4,7 @@
         <div class="stat__label">Years of experience</div>
     </div>
     <div class="stat">
-        <div class="stat__value">6+</div>
+        <div class="stat__value">{{ now()->year - 2020 }}+</div>
         <div class="stat__label">Years leading teams</div>
     </div>
     <div class="stat">
