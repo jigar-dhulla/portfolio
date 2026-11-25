@@ -15,6 +15,9 @@
             <a href="https://www.linkedin.com/in/jigardhulla" target="_blank" rel="noopener">
                 <x-icon.linkedin />linkedin.com/in/jigardhulla
             </a>
+            <a href="https://github.com/jigar-dhulla" target="_blank" rel="noopener">
+                <x-icon.github />github.com/jigar-dhulla
+            </a>
             <a href="https://twitter.com/jigar_dhulla" target="_blank" rel="noopener">
                 <x-icon.x />@jigar_dhulla
             </a>

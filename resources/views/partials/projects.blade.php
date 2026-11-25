@@ -26,11 +26,16 @@
             </div>
         </a>
 
-        <a class="project" href="https://bots.jigardhulla.dev" target="_blank" rel="noopener">
+        {{-- A div, not a link: the card holds two links. The site link stretches over the card. --}}
+        <div class="project">
             <div class="project__head">
                 <div>
                     <h3 class="project__title">Personal Bots</h3>
-                    <div class="project__link">bots.jigardhulla.dev&nbsp;&nearr;</div>
+                    <div class="project__link">
+                        <a class="project__cover" href="https://bots.jigardhulla.dev" target="_blank" rel="noopener">bots.jigardhulla.dev&nbsp;&nearr;</a>
+                        &middot;
+                        <a class="project__repo" href="https://github.com/jigar-dhulla/personal-bots" target="_blank" rel="noopener">source on GitHub&nbsp;&nearr;</a>
+                    </div>
                 </div>
                 <span class="project__kind is-accent">Side project</span>
             </div>
@@ -45,6 +50,6 @@
                     <span class="tag tag-neutral">{{ $tag }}</span>
                 @endforeach
             </div>
-        </a>
+        </div>
     </div>
 </section>

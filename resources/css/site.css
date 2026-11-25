@@ -523,6 +523,7 @@
 }
 
 .project {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -554,6 +555,26 @@
     color: var(--color-accent-700);
     font-size: 15px;
     font-weight: 600;
+}
+
+.project__link a {
+    color: inherit;
+}
+
+/* Makes the whole card clickable when it holds more than one link. */
+.project__cover::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+}
+
+.project__repo {
+    position: relative;
+    z-index: 1;
+}
+
+.project__repo:hover {
+    text-decoration: underline;
 }
 
 .project__kind {

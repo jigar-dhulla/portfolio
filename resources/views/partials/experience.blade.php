@@ -29,7 +29,7 @@
         <div>
             <h3 class="role__title">Senior Software Engineer</h3>
             <div class="role__org">DENSOU &middot; Pune</div>
-            <div class="role__dates">Sep 2023 to Jun 2026</div>
+            <div class="role__dates">Sep 2023 to Apr 2026</div>
         </div>
         <div class="role__detail">
             <p>
